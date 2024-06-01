@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23C71" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Allrounders" representedClassName="Allrounders" syncable="YES">
+        <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player"/>
+    </entity>
+    <entity name="Batsmen" representedClassName="Batsmen" syncable="YES">
+        <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player"/>
+    </entity>
+    <entity name="Bowlers" representedClassName="Bowlers" syncable="YES">
+        <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player"/>
+    </entity>
+    <entity name="Player" representedClassName="Player" syncable="YES">
+        <attribute name="about" optional="YES" attributeType="String"/>
+        <attribute name="battingStyle" optional="YES" attributeType="String"/>
+        <attribute name="born" optional="YES" attributeType="String"/>
+        <attribute name="bowlingStyle" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="isSubstitute" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="role" optional="YES" attributeType="String"/>
+        <attribute name="url" optional="YES" attributeType="String"/>
+        <relationship name="teamPlayer" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TeamPlayer" inverseName="player" inverseEntity="TeamPlayer"/>
+    </entity>
+    <entity name="Substitutes" representedClassName="Substitutes" syncable="YES">
+        <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player"/>
+    </entity>
+    <entity name="Team" representedClassName="Team" syncable="YES">
+        <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="TeamPlayer" inverseName="team" inverseEntity="TeamPlayer"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="team" inverseEntity="User"/>
+    </entity>
+    <entity name="TeamPlayer" representedClassName="TeamPlayer" syncable="YES">
+        <attribute name="isSubstitute" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="role" optional="YES" attributeType="String"/>
+        <relationship name="player" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Player" inverseName="teamPlayer" inverseEntity="Player"/>
+        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="players" inverseEntity="Team"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="email" optional="YES" attributeType="String"/>
+        <attribute name="firstName" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="String"/>
+        <attribute name="lastName" optional="YES" attributeType="String"/>
+        <attribute name="password" optional="YES" attributeType="String"/>
+        <relationship name="team" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Team" inverseName="user" inverseEntity="Team"/>
+    </entity>
+    <entity name="WicketKeepers" representedClassName="WicketKeepers" syncable="YES">
+        <relationship name="players" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Player"/>
+    </entity>
+</model>
